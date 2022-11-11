@@ -1,0 +1,187 @@
+<section id="custom-video-section" class="">
+  <div class="video">
+    <div class="video-wrapper">
+      
+      <div class="video-container">
+        
+          <video class="vedio-content" width="100%" height="100%" autoplay muted loop>
+            <source src="{{ section.settings.video_src }}" type="video/mp4">
+          </video>
+        
+          <div class="text-wrapper">
+            <div class="text-content">
+              <div class="text">
+                <div class="h1-animation">
+                  <div class="animation">
+                    <div class="animation-content">
+                      <h1>{{ section.settings.title }}</h1>
+                      <h3>{{ section.settings.subtitle }}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  
+.video{
+    display: block;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+  
+.video-wrapper {
+    width: 100%;
+    display: block;
+}
+  
+.video-container {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+  
+.video-container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    z-index: 1;
+}
+  
+.vedio-content {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  
+.text-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    color: white;
+    z-index: 2;
+    font-size: 12px;
+    position: absolute;
+}
+  
+.text-content {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    padding: 0px 80px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1;
+}
+  
+.text-content:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: auto;
+    background: radial-gradient(rgba(0,0,0,.1) 0%,transparent 60%);
+    background: radial-gradient(rgba(0,0,0,var(--colorImageOverlayTextShadow)) 0%,transparent 60%);
+    margin: -100px -200px;
+    z-index: -1;
+}
+  
+.text {
+    position: relative;
+    display: inline-block;
+}
+  
+.h1-animation {
+    font-size: 60px;
+    display: block;
+    color: white;
+    margin-bottom: 0;
+}
+  
+.animation {
+    overflow: hidden;
+    display: inline-flex;
+    opacity: 1;
+}
+ 
+.animation-content {
+    animation-name: rise-up;
+    transform: translateY(0);
+    transition: 1s ease;
+    animation-duration: 1s;
+}
+@keyframes rise-up {
+  from {transform: translateY(100%);}
+  to {transform: translateY(0);}
+}
+  
+h1 {
+    font-size: 69px;
+    color: white;
+    margin-bottom: 0;
+}
+
+h3 {
+    color: white;
+    font-weight: bold;
+}
+
+@media only screen and ( min-width:769px){
+.video-container {
+    display: inline-flex;
+
+}
+  
+h1 {
+    font-size: 59px;
+    margin-bottom:0px;
+}
+  
+h3 {
+    font-size:24px;
+    
+}
+}
+  
+</style>
+
+{% schema %}
+  {
+    "name": "Video Section",
+    "class": "custom_video_section",
+    "settings":[
+      {
+        "type": "text",
+        "id": "video_src",
+        "label": "Video Url",
+        "info": "Accepts only cdn link"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Video Title"
+      },
+      {
+        "type": "richtext",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "<p>Subtitle</p>"
+      }
+    ]
+  }
+{% endschema %}
